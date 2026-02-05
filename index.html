@@ -75,7 +75,7 @@
         }
 
         #input::placeholder {
-            color:rgb(78, 77, 77);
+            color: rgb(78, 77, 77);
             font-family: "Epilogue"
         }
 
@@ -119,8 +119,8 @@
         }
 
         .right>p:hover {
-            background-color:rgb(234, 234, 234);
-            transition:ease;
+            background-color: rgb(234, 234, 234);
+            transition: ease;
         }
 
         .display {
@@ -156,7 +156,8 @@
 
         @media (max-width: 850px) {
             .wrap {
-                grid-template-columns: 1fr; /* Stacks the input and the table */
+                grid-template-columns: 1fr;
+                /* Stacks the input and the table */
             }
 
             .left {
@@ -167,30 +168,35 @@
 
             .right {
                 width: 100%;
-                padding-inline: 1rem; /* Prevents rows from touching screen edges */
-                align-items: center; /* Centers the rows if they aren't full width */
+                padding-inline: 1rem;
+                /* Prevents rows from touching screen edges */
+                align-items: center;
+                /* Centers the rows if they aren't full width */
             }
 
-            .right > p {
-                padding-inline: 2rem; /* Reduced from 7rem to prevent stretching/overflow */
+            .right>p {
+                padding-inline: 2rem;
+                /* Reduced from 7rem to prevent stretching/overflow */
                 font-size: 1.4rem;
-                width: 90%; /* Keeps the boxes contained and uniform */
+                width: 90%;
+                /* Keeps the boxes contained and uniform */
                 margin-inline: auto;
                 text-align: center;
             }
 
             #input {
-                width: 80vw; /* Keeps input box manageable on mobile */
+                width: 80vw;
+                /* Keeps input box manageable on mobile */
             }
         }
-
         @media (max-width: 500px) {
             html {
-                font-size: 60%; 
+                font-size: 60%;
             }
-            
-            .right > p {
-                width: 95%; /* Slightly wider on very small screens */
+
+            .right>p {
+                width: 95%;
+                /* Slightly wider on very small screens */
             }
         }
     </style>
@@ -202,7 +208,7 @@
             <form action="">
                 <p id="heading">Enter a number here:</p>
                 <br>
-                <input type="text" id="input" placeholder="Enter a number here:">
+                <input autocomplete="off" type="text" id="input" placeholder="Enter a number here:">
                 <br>
                 <input id="submitBtn" type="submit" value="Submit" class="button">
                 <input type="reset" value="Reset" class="button" id="reset" onclick="location.reload()">
@@ -244,6 +250,7 @@
         const submitBtn = document.querySelector("#submitBtn");
         const input = document.querySelector("#input");
         const paragraphs = document.querySelectorAll(".right p");
+        const resetBtn = document.querySelector('#reset');
 
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
@@ -254,6 +261,14 @@
                 paragraphs[i].classList.remove("display");
             }
         });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "r") {
+                resetBtn.click();
+            }
+        });
+
+
     </script>
 </body>
 
