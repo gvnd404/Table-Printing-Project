@@ -19,6 +19,14 @@
         body {
             font-family: "Epilogue";
             font-size: 2rem;
+            /* background: url('https://images.unsplash.com/photo-1677137340058-a0c01a4c0a5a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            background-size: 110%;
+            backdrop-filter: blur(0px);
+            -webkit-backdrop-filter: blur(10px); */
+            background-color: rgb(243, 239, 239);
         }
 
         .left {
@@ -28,7 +36,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: rgb(237, 237, 237)
         }
 
         .right {
@@ -46,7 +53,8 @@
         }
 
         #heading {
-            font-size: 2rem;
+            font-size: 1.2rem;
+            display: none;
             color: rgb(49, 49, 49);
         }
 
@@ -66,18 +74,124 @@
             text-align: center;
         }
 
+        #input::placeholder {
+            color:rgb(78, 77, 77);
+            font-family: "Epilogue"
+        }
+
         #input:focus {
-            outline: 0;
+            /* background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px); */
+            outline: none;
         }
 
         #submitBtn {
-            justify-self: flex-end;
-            display: inline-block;
+            box-shadow: 0px 0px 50px rgb(46, 110, 248, 0.408);
+        }
+
+        .button {
             padding: 1rem;
             border-radius: 2rem;
             border: 0;
             background-color: rgb(46, 110, 248);
             color: white;
+        }
+
+        #reset {
+            margin-top: .5rem;
+            background-color: rgb(246, 43, 43);
+            box-shadow: 0px 0px 50px rgba(246, 43, 43, 0.408);
+        }
+
+        .right {
+            transition: all 1s ease;
+        }
+
+        .right>p {
+            color: black;
+            font-size: 1.7rem;
+            margin-block: .2rem;
+            padding: 1rem;
+            padding-inline: 7rem;
+            border-radius: 12px;
+            background-color: white;
+            border-left: 5px solid rgb(46, 110, 248);
+        }
+
+        .right>p:hover {
+            background-color:rgb(234, 234, 234);
+            transition:ease;
+        }
+
+        .display {
+            display: none;
+        }
+
+        #input {
+            height: 5rem;
+            font-size: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            text-align: center;
+
+            /* background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); */
+
+            color: #000;
+        }
+
+        #input:focus {
+            /* background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);     */
+            outline: none;
+            color: white;
+        }
+
+        #input:focus {
+            color: #000;
+            /* or white if you prefer */
+        }
+
+        @media (max-width: 850px) {
+            .wrap {
+                grid-template-columns: 1fr; /* Stacks the input and the table */
+            }
+
+            .left {
+                height: auto;
+                padding-top: 5rem;
+                padding-bottom: 2rem;
+            }
+
+            .right {
+                width: 100%;
+                padding-inline: 1rem; /* Prevents rows from touching screen edges */
+                align-items: center; /* Centers the rows if they aren't full width */
+            }
+
+            .right > p {
+                padding-inline: 2rem; /* Reduced from 7rem to prevent stretching/overflow */
+                font-size: 1.4rem;
+                width: 90%; /* Keeps the boxes contained and uniform */
+                margin-inline: auto;
+                text-align: center;
+            }
+
+            #input {
+                width: 80vw; /* Keeps input box manageable on mobile */
+            }
+        }
+
+        @media (max-width: 500px) {
+            html {
+                font-size: 60%; 
+            }
+            
+            .right > p {
+                width: 95%; /* Slightly wider on very small screens */
+            }
         }
     </style>
 </head>
@@ -88,22 +202,23 @@
             <form action="">
                 <p id="heading">Enter a number here:</p>
                 <br>
-                <input type="text" id="input">
+                <input type="text" id="input" placeholder="Enter a number here:">
                 <br>
-                <input id="submitBtn" type="submit" value="Submit">
+                <input id="submitBtn" type="submit" value="Submit" class="button">
+                <input type="reset" value="Reset" class="button" id="reset" onclick="location.reload()">
             </form>
         </div>
         <div class="right">
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
+            <p class="display"></p>
         </div>
     </div>
     <script>
@@ -132,11 +247,11 @@
 
         submitBtn.addEventListener("click", function (e) {
             e.preventDefault();
-
             const number = Number(input.value);
 
             for (let i = 0; i < paragraphs.length; i++) {
                 paragraphs[i].textContent = `${number} x ${i + 1} = ${number * (i + 1)}`;
+                paragraphs[i].classList.remove("display");
             }
         });
     </script>
