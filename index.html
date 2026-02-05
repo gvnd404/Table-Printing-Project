@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematical Table</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Epilogue";
+            font-size: 2rem;
+        }
+
+        .left {
+            font-family: "Epilogue";
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(237, 237, 237)
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* align-items: center; */
+            margin: 0 auto;
+            text-align: justify;
+        }
+
+        .wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        #heading {
+            font-size: 2rem;
+            color: rgb(49, 49, 49);
+        }
+
+        input {
+            font-size: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #input {
+            height: 5rem;
+            border: 0;
+            border-radius: .5rem;
+            text-align: center;
+        }
+
+        #input:focus {
+            outline: 0;
+        }
+
+        #submitBtn {
+            justify-self: flex-end;
+            display: inline-block;
+            padding: 1rem;
+            border-radius: 2rem;
+            border: 0;
+            background-color: rgb(46, 110, 248);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="left">
+            <form action="">
+                <p id="heading">Enter a number here:</p>
+                <br>
+                <input type="text" id="input">
+                <br>
+                <input id="submitBtn" type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="right">
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+    </div>
+    <script>
+        // let submitBtn = document.querySelector("#submitBtn");
+        // let input = document.querySelector("#input");
+        // submitBtn.addEventListener("click", function (dets) {
+        //     dets.preventDefault();
+        //     let number = input.value;
+        //     let paragraphs = document.querySelectorAll(".right p")
+        //     console.log(paragraphs)
+        //     let i = 0;
+        //     let j = 0;
+        //     while (i < 10) {
+        //         var table = `${number} x ${i + 1} = ${number * (i + 1)}`
+        //         if (i === j) {
+        //             paragraphs[j].textContent = table;
+        //         }
+        //         i++;
+        //         j++;
+        //     }
+        // })
+
+        const submitBtn = document.querySelector("#submitBtn");
+        const input = document.querySelector("#input");
+        const paragraphs = document.querySelectorAll(".right p");
+
+        submitBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const number = Number(input.value);
+
+            for (let i = 0; i < paragraphs.length; i++) {
+                paragraphs[i].textContent = `${number} x ${i + 1} = ${number * (i + 1)}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
